@@ -1,0 +1,12 @@
+/home/eggy/disco/Videojuegos/Jueguito/Logica/bin/Debug/net6.0/Logica.deps.json
+/home/eggy/disco/Videojuegos/Jueguito/Logica/bin/Debug/net6.0/Logica.dll
+/home/eggy/disco/Videojuegos/Jueguito/Logica/bin/Debug/net6.0/ref/Logica.dll
+/home/eggy/disco/Videojuegos/Jueguito/Logica/bin/Debug/net6.0/Logica.pdb
+/home/eggy/disco/Videojuegos/Jueguito/Logica/obj/Debug/net6.0/Logica.csproj.AssemblyReference.cache
+/home/eggy/disco/Videojuegos/Jueguito/Logica/obj/Debug/net6.0/Logica.GeneratedMSBuildEditorConfig.editorconfig
+/home/eggy/disco/Videojuegos/Jueguito/Logica/obj/Debug/net6.0/Logica.AssemblyInfoInputs.cache
+/home/eggy/disco/Videojuegos/Jueguito/Logica/obj/Debug/net6.0/Logica.AssemblyInfo.cs
+/home/eggy/disco/Videojuegos/Jueguito/Logica/obj/Debug/net6.0/Logica.csproj.CoreCompileInputs.cache
+/home/eggy/disco/Videojuegos/Jueguito/Logica/obj/Debug/net6.0/Logica.dll
+/home/eggy/disco/Videojuegos/Jueguito/Logica/obj/Debug/net6.0/ref/Logica.dll
+/home/eggy/disco/Videojuegos/Jueguito/Logica/obj/Debug/net6.0/Logica.pdb
