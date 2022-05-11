@@ -50,6 +50,9 @@ public class VisualJueguito
                 Wizard wizard = new Wizard();
                 NewGamePlayer(wizard);
                 break;
+                case ConsoleKey.Escape:
+                Main();
+                break;
                default:
                break;
            }
@@ -57,12 +60,17 @@ public class VisualJueguito
     }
     private static void NewGamePlayer(Player player)
     {
-        player.Life = 100;
+        if(player.Exp >= player.ExpTotal)
+        {
+          LevelUp(player);
+        }
+        
         while(true)
         {
             Console.Clear();
             System.Console.WriteLine("Menu");
             System.Console.WriteLine("[S]tats");
+            System.Console.WriteLine("[I]nventario");
             System.Console.WriteLine("[M]ision");
             System.Console.WriteLine("[A]rena");
             ConsoleKey key = Console.ReadKey(true).Key;
@@ -77,6 +85,12 @@ public class VisualJueguito
                 case ConsoleKey.A:
                 Enemy enemy = new Enemy();
                 Battle(player,enemy);
+                break;
+                case ConsoleKey.I:
+                Inventory(player);
+                break;
+                case ConsoleKey.Escape:
+                Main();
                 break;
                 default:
                 break;
@@ -108,10 +122,7 @@ public class VisualJueguito
     private static void Quest(Player player)
     {
         player.Exp += 5;
-        if(player.Exp >= player.ExpTotal)
-        {
-          LevelUp(player);
-        }
+        
         while(true)
         {
             Console.Clear();
@@ -167,25 +178,43 @@ public class VisualJueguito
         {
           Console.Clear();
           System.Console.WriteLine("Life:{0}  Enemy Life:{1}",player.Life,enemy.Life);
-          System.Console.WriteLine("[A]ttack");
-          ConsoleKey key = Console.ReadKey(true).Key;
-          if(key == ConsoleKey.A)
+          var attack = 0;
+          ConsoleKey tecla = new ConsoleKey();
+          foreach(var item in player.Attacks)
           {
-              System.Console.WriteLine("Has infligido {0} puntos de danno",player.Attack());
-              System.Console.WriteLine("El enemigo ha infligido {0}",enemy.Attack());
-              enemy.Life -= player.Attack();
-              player.Life -= enemy.Attack();
+           attack = item.Value;
+           tecla = (ConsoleKey)item.Key[0];
+          System.Console.WriteLine("[{0}]{1}",item.Key[0],item.Key);
           }
-          if(enemy.Life <=0)
+          System.Console.WriteLine("");
+          ConsoleKey key = Console.ReadKey(true).Key;
+          if(key == tecla)
           {
+              foreach(var item in player.Attacks)
+              {
+              System.Console.WriteLine("Has infligido {0} puntos de danno",item.Value);
+              }
+              System.Console.WriteLine("El enemigo ha infligido {0}",enemy.Attack());
+              
+              enemy.Life -= attack;
+              if(enemy.Life <=0)
+             {
+
              win = true;
              EndBattle(player,win);
-          }
-          else if(player.Life <=0)
-          {
+
+             }
+              player.Life -= enemy.Attack();
+               if(player.Life <=0)
+             {
+
               win = false;
-            EndBattle(player,win);
+              EndBattle(player,win);
+
+             }
           }
+          
+        
         }
     }
     private static void EndBattle(Player player,bool win)
@@ -197,7 +226,7 @@ public class VisualJueguito
              {
              Console.Clear();
              
-             System.Console.WriteLine("Has ganado!!!");
+             System.Console.WriteLine("Has ganado!!!. Recibes 10 exp");
              player.Exp += 10;
              System.Console.WriteLine("Presione Enter para continuar");
              ConsoleKey key = Console.ReadKey(true).Key;
@@ -221,6 +250,28 @@ public class VisualJueguito
              }
         }
     }
+
+    private static void Inventory(Player player)
+    {
+         while(true)
+         {
+             System.Console.WriteLine("Equipamiento:");
+             foreach(var item in player.equipamiento)
+             {
+                 System.Console.WriteLine("{0} - {1}",item.Key,item.Value);
+             }
+             System.Console.WriteLine("\n");
+             System.Console.WriteLine("Inventario:");
+             System.Console.WriteLine("\n");
+             System.Console.WriteLine("[A]tras");
+             ConsoleKey key = Console.ReadKey(true).Key;
+             if(key == ConsoleKey.A)
+             {
+                 NewGamePlayer(player);
+             }
+         }
+    }
+
     }
 
 
